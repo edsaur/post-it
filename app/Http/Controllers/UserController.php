@@ -30,7 +30,7 @@ class UserController extends Controller
        $loginType = filter_var($request['username'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         
        $credentials = [$loginType => $request->input('username'), 'password' => $request->input('password')];
-
+        
         if(Auth::attempt($credentials)) {
             return redirect()->intended('home')->with('Login Successful!');
         } else {
@@ -90,4 +90,3 @@ class UserController extends Controller
         //
     }
 }
-
