@@ -14,12 +14,15 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', [HomeController::class, 'index'])->name('home.homepage');
-Route::get('signup', [UserController::class, 'signup'])->name('user.signup');
-Route::get('login', [UserController::class, 'login'])->name('user.login');
 
+Route::middleware('guest')->group(function() {
+    Route::get('signup', [UserController::class, 'signup'])->name('user.signup');
+    Route::get('login', [UserController::class, 'login'])->name('user.login');
+    Route::post('login', [UserController::class, 'loginUser'])->name('user.loginUser');
+    Route::resource('user', UserController::class)->only(['store']);
+});
 
-// USER
-Route::resource('user', UserController::class)->except(['index', 'create']);
-Route::post('login', [UserController::class, 'loginUser'])->name('user.loginUser');
+Route::post('logout', [UserController::class, 'logoutuser'])->name('user.logoutUser');
+Route::resource('user', UserController::class)->except(['index', 'create', 'store']);
+
