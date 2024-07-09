@@ -12,7 +12,17 @@
 
                     @csrf
 
+                    <label for="username">Write your username or email</label>
+                    <div>
+                        <input type="text" name="username" id="username" />
+                    </div>
                     
+                    <label for="password">Password</label>
+                    <div>
+                        <input type="password" name="password" id="password">
+                    </div>
+
+                    <button type="submit">Login</button>
                 </form>
             </div>
         </div>
