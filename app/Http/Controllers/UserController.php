@@ -32,11 +32,20 @@ class UserController extends Controller
        $credentials = [$loginType => $request->input('username'), 'password' => $request->input('password')];
         
         if(Auth::attempt($credentials)) {
-            return redirect()->intended('home')->with('Login Successful!');
+            $request->session()->regenerate();
+            return redirect()->intended('/')->with('Login Successful!');
         } else {
-            return redirect()->route('user.login')->withErrors('Users Credentials are incorrect!');
+            return back()->withErrors('Users Credentials are incorrect!');
         }
 
+    }
+
+    public function logoutUser(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home.homepage')->with('success', "Logout Successfully!");
     }
 
     /**
