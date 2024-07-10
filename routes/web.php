@@ -26,3 +26,6 @@ Route::middleware('guest')->group(function() {
 Route::post('logout', [UserController::class, 'logoutuser'])->name('user.logoutUser');
 Route::resource('user', UserController::class)->except(['index', 'create', 'store']);
 
+// Dashboard
+Route::get('dashboard')->middleware('auth');
+
