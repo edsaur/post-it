@@ -8,6 +8,9 @@
                     @foreach ($errors->all() as $error)
                     <p class="text-danger">{{ $error }}</p>
                     @endforeach
+
+                    @elseif (session('message'))
+                    <p class="text-danger">{{ session('message') }}</p>
                     @endif
 
                     @csrf
