@@ -17,10 +17,15 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
+        $tags = ['Not Done', 'Currently Working', 'Done'];
+        
         return [
             'user_id' => User::factory(),
             'title' => fake()->sentence(3),
-            'tag'
+            'description' => fake()->paragraph(),
+            'tags' => $tags[array_rand($tags)],
+            'created_at' => fake()->dateTimeBetween('-1 week', 'now'),
+            'updated_at' => now()
         ];
     }
 }
