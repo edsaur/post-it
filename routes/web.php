@@ -28,8 +28,8 @@ Route::post('logout', [UserController::class, 'logoutuser'])->name('user.logoutU
 Route::resource('user', UserController::class)->except(['index', 'create', 'store']);
 
 // Dashboard
-Route::get('dashboard', [PostController::class, 'index'])->name('post.dashboard')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::resource('post', PostController::class)->except('index');
+    Route::get('dashboard', [PostController::class, 'index'])->name('post.dashboard');
 });
