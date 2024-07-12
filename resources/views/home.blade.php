@@ -21,6 +21,6 @@
 
     @auth
         <h1>Welcome {{$user->username}}! </h1>
-        <h3>Proceed to your <a href="/">Dashboard</a></h3>
+        <h3>Proceed to your <a href="{{route('post.dashboard')}}">Dashboard</a></h3>
     @endauth
 </x-layout>
